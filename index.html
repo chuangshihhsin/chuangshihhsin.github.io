@@ -179,31 +179,37 @@
     <section id="about" class="py-20 bg-white">
         <div class="container mx-auto px-4">
             <div class="flex flex-col md:flex-row items-center gap-12">
-                <div class="w-full md:w-1/2">
+                <!-- 手機版:文字在上 -->
+                <div class="w-full md:w-1/2 order-2 md:order-1">
                     <!-- 客戶群展示 -->
-                    <div class="bg-gradient-to-br from-slate-50 to-orange-50 rounded-lg shadow-xl p-8 h-[400px] flex flex-col justify-center">
-                        <h3 class="text-2xl font-bold text-slate-800 mb-8 text-center">我們的合作夥伴</h3>
-                        <div class="grid grid-cols-2 gap-6">
+                    <div class="bg-gradient-to-br from-slate-50 to-orange-50 rounded-lg shadow-xl p-6 md:p-8 md:h-[400px] flex flex-col justify-center">
+                        <h3 class="text-xl md:text-2xl font-bold text-slate-800 mb-6 md:mb-8 text-center">優良客戶</h3>
+                        <div class="grid grid-cols-2 gap-4 md:gap-6">
                             <!-- 桔梗 JIEGENGE -->
-                            <div class="bg-white rounded-lg p-4 flex items-center justify-center shadow-md hover:shadow-lg transition-shadow">
-                                <img src="images/client-jiegenge.png" alt="桔梗 JIEGENGE" class="max-w-full max-h-20 object-contain">
+                            <div class="bg-white rounded-lg p-3 md:p-4 flex flex-col items-center justify-center shadow-md hover:shadow-lg transition-shadow">
+                                <img src="images/client-jiegenge.png" alt="桔梗 JIEGENGE" class="max-w-full h-16 md:h-20 object-contain mb-2">
+                                <p class="text-xs md:text-sm text-slate-600 text-center font-medium">桔梗 JIEGENGE</p>
                             </div>
                             <!-- 柯達大飯店 -->
-                            <div class="bg-white rounded-lg p-4 flex items-center justify-center shadow-md hover:shadow-lg transition-shadow">
-                                <img src="images/client-ks-hotels.png" alt="柯達大飯店" class="max-w-full max-h-20 object-contain">
+                            <div class="bg-white rounded-lg p-3 md:p-4 flex flex-col items-center justify-center shadow-md hover:shadow-lg transition-shadow">
+                                <img src="images/client-ks-hotels.png" alt="柯達大飯店" class="max-w-full h-16 md:h-20 object-contain mb-2">
+                                <p class="text-xs md:text-sm text-slate-600 text-center font-medium">柯達大飯店</p>
                             </div>
                             <!-- 美麗華影城 -->
-                            <div class="bg-white rounded-lg p-4 flex items-center justify-center shadow-md hover:shadow-lg transition-shadow">
-                                <img src="images/client-miramar.png" alt="美麗華影城" class="max-w-full max-h-20 object-contain">
+                            <div class="bg-white rounded-lg p-3 md:p-4 flex flex-col items-center justify-center shadow-md hover:shadow-lg transition-shadow">
+                                <img src="images/client-miramar.png" alt="美麗華影城" class="max-w-full h-16 md:h-20 object-contain mb-2">
+                                <p class="text-xs md:text-sm text-slate-600 text-center font-medium">美麗華影城</p>
                             </div>
                             <!-- 大肚魚早午餐店 -->
-                            <div class="bg-white rounded-lg p-4 flex items-center justify-center shadow-md hover:shadow-lg transition-shadow">
-                                <img src="images/client-daduyu.png" alt="大肚魚早午餐店" class="max-w-full max-h-20 object-contain">
+                            <div class="bg-white rounded-lg p-3 md:p-4 flex flex-col items-center justify-center shadow-md hover:shadow-lg transition-shadow">
+                                <img src="images/client-daduyu.png" alt="大肚魚早午餐店" class="max-w-full h-16 md:h-20 object-contain mb-2">
+                                <p class="text-xs md:text-sm text-slate-600 text-center font-medium">大肚魚早午餐店</p>
                             </div>
                         </div>
                     </div>
                 </div>
-                <div class="w-full md:w-1/2">
+                <!-- 手機版:客戶在下 -->
+                <div class="w-full md:w-1/2 order-1 md:order-2">
                     <h2
                         class="text-3xl md:text-4xl font-bold text-slate-800 mb-6 border-l-4 border-brand pl-4">
                         創食新 烘焙坊:<br>三十年烘焙職人堅持
