@@ -48,7 +48,7 @@
 
 <body class="bg-orange-50 text-slate-600 font-sans antialiased">
     <!-- Header -->
-    <header class="fixed w-full bg-white/90 backdrop-blur-sm shadow-sm z-50 transition-all duration-300">
+    <header class="fixed w-full bg-white/90 backdrop-blur-sm shadow-sm z-50 transition-transform duration-300" id="main-header">
         <div class="container mx-auto px-4 py-3 flex justify-between items-center">
             <a href="#" class="text-xl md:text-2xl font-bold text-slate-800 flex items-center gap-1 flex-shrink-0 transition-opacity duration-300">
                 <span class="text-brand-dark whitespace-nowrap">創食新</span>
@@ -56,7 +56,7 @@
             </a>
             
             <!-- Desktop Navigation -->
-            <nav class="hidden md:flex gap-8 font-medium items-center">
+            <nav class="hidden lg:flex gap-8 font-medium items-center">
                 <a href="#about" class="hover:text-brand-dark transition-colors">關於我們</a>
                 <a href="#products" class="hover:text-brand-dark transition-colors">產品介紹</a>
                 <a href="https://pse.is/8dvv5e" target="_blank" rel="noopener noreferrer" class="hover:text-brand-dark transition-colors flex items-center gap-1">
@@ -69,11 +69,11 @@
                 <a href="#contact" class="hover:text-brand-dark transition-colors">聯絡我們</a>
             </nav>
             <a href="#contact"
-                class="hidden md:inline-block px-6 py-2 bg-brand text-slate-900 font-medium rounded-full hover:bg-brand-dark hover:text-white transition-all">
+                class="hidden lg:inline-block px-6 py-2 bg-brand text-slate-900 font-medium rounded-full hover:bg-brand-dark hover:text-white transition-all">
                 立即洽詢
             </a>
 
-            <!-- Social Media Buttons (Desktop & Mobile) -->
+            <!-- Right Side: Social + Menu Button -->
             <div class="flex items-center gap-2 ml-2">
                 <!-- LINE Button -->
                 <a href="https://line.me/ti/p/0934049125" target="_blank" rel="noopener noreferrer" 
@@ -94,99 +94,53 @@
                 </a>
 
                 <!-- Mobile Menu Button -->
-                <button id="mobile-menu-button" class="md:hidden text-slate-800 focus:outline-none flex-shrink-0">
-                <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                    <path id="menu-icon" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16M4 18h16"></path>
-                    <path id="close-icon" class="hidden" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12"></path>
-                </svg>
-            </button>
-        </div>
-
-        <!-- Mobile Navigation -->
-        <nav id="mobile-menu" class="hidden md:hidden bg-white border-t border-gray-200 shadow-lg">
-            <div class="container mx-auto px-4 py-6">
-                <div class="space-y-2">
-                    <a href="#about" class="block text-slate-800 hover:bg-brand-light transition-colors py-3 px-4 rounded-lg font-medium">
-                        關於我們
-                    </a>
-                    <a href="#products" class="block text-slate-800 hover:bg-brand-light transition-colors py-3 px-4 rounded-lg font-medium">
-                        產品介紹
-                    </a>
-                    <a href="https://pse.is/8dvv5e" target="_blank" rel="noopener noreferrer" class="block text-slate-800 hover:bg-brand-light transition-colors py-3 px-4 rounded-lg font-medium flex items-center justify-between">
-                        <span>📄 產品目錄</span>
-                        <svg class="w-4 h-4 text-slate-400" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M10 6H6a2 2 0 00-2 2v10a2 2 0 002 2h10a2 2 0 002-2v-4M14 4h6m0 0v6m0-6L10 14"></path>
-                        </svg>
-                    </a>
-                    <a href="#customization" class="block text-slate-800 hover:bg-brand-light transition-colors py-3 px-4 rounded-lg font-medium">
-                        客製化服務
-                    </a>
-                    <a href="#contact" class="block text-slate-800 hover:bg-brand-light transition-colors py-3 px-4 rounded-lg font-medium">
-                        聯絡我們
-                    </a>
-                </div>
-                
-                <div class="mt-6 pt-4 border-t border-gray-200">
-                    <a href="#contact" class="block text-center px-6 py-3 bg-brand text-slate-900 font-bold rounded-full hover:bg-brand-dark hover:text-white transition-all shadow-md">
-                        💬 立即洽詢
-                    </a>
-                </div>
+                <button id="mobile-menu-button" class="lg:hidden text-slate-800 focus:outline-none flex-shrink-0 z-50">
+                    <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                        <path id="menu-icon" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16M4 18h16"></path>
+                        <path id="close-icon" class="hidden" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12"></path>
+                    </svg>
+                </button>
             </div>
-        </nav>
+        </div>
     </header>
 
-    <!-- Mobile Menu Script -->
-    <script>
-        const mobileMenuButton = document.getElementById('mobile-menu-button');
-        const mobileMenu = document.getElementById('mobile-menu');
-        const menuIcon = document.getElementById('menu-icon');
-        const closeIcon = document.getElementById('close-icon');
-        const mobileMenuLinks = mobileMenu.querySelectorAll('a');
-        const headerLogo = document.querySelector('header a[href="#"]');
-        const socialButtons = document.querySelectorAll('header a[href^="https://line.me"], header a[href^="https://m.me"]');
+    <!-- Overlay -->
+    <div id="menu-overlay" class="fixed inset-0 bg-black/50 z-40 hidden transition-opacity duration-300 lg:hidden"></div>
 
-        mobileMenuButton.addEventListener('click', () => {
-            const isOpening = mobileMenu.classList.contains('hidden');
+    <!-- Side Menu (從右邊滑出) -->
+    <nav id="side-menu" class="fixed top-0 right-0 h-full w-72 bg-white shadow-2xl z-40 transform translate-x-full transition-transform duration-300 lg:hidden overflow-y-auto">
+        <div class="p-6">
+            <div class="space-y-1 mt-16">
+                <a href="#about" class="menu-link block text-slate-800 hover:bg-brand-light transition-colors py-3 px-4 rounded-lg font-medium text-base">
+                    關於我們
+                </a>
+                <a href="#products" class="menu-link block text-slate-800 hover:bg-brand-light transition-colors py-3 px-4 rounded-lg font-medium text-base">
+                    產品介紹
+                </a>
+                <a href="https://pse.is/8dvv5e" target="_blank" rel="noopener noreferrer" class="menu-link block text-slate-800 hover:bg-brand-light transition-colors py-3 px-4 rounded-lg font-medium text-base flex items-center justify-between">
+                    <span>📄 產品目錄</span>
+                    <svg class="w-4 h-4 text-slate-400" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M10 6H6a2 2 0 00-2 2v10a2 2 0 002 2h10a2 2 0 002-2v-4M14 4h6m0 0v6m0-6L10 14"></path>
+                    </svg>
+                </a>
+                <a href="#customization" class="menu-link block text-slate-800 hover:bg-brand-light transition-colors py-3 px-4 rounded-lg font-medium text-base">
+                    客製化服務
+                </a>
+                <a href="#contact" class="menu-link block text-slate-800 hover:bg-brand-light transition-colors py-3 px-4 rounded-lg font-medium text-base">
+                    聯絡我們
+                </a>
+            </div>
             
-            mobileMenu.classList.toggle('hidden');
-            menuIcon.classList.toggle('hidden');
-            closeIcon.classList.toggle('hidden');
-            
-            // Hide/show logo and social buttons
-            if (isOpening) {
-                headerLogo.style.opacity = '0';
-                headerLogo.style.pointerEvents = 'none';
-                socialButtons.forEach(btn => {
-                    btn.style.opacity = '0';
-                    btn.style.pointerEvents = 'none';
-                });
-            } else {
-                headerLogo.style.opacity = '1';
-                headerLogo.style.pointerEvents = 'auto';
-                socialButtons.forEach(btn => {
-                    btn.style.opacity = '1';
-                    btn.style.pointerEvents = 'auto';
-                });
-            }
-        });
+            <div class="mt-6 pt-6 border-t border-gray-200">
+                <a href="#contact" class="block text-center px-6 py-3 bg-brand text-slate-900 font-bold rounded-full hover:bg-brand-dark hover:text-white transition-all shadow-md">
+                    💬 立即洽詢
+                </a>
+            </div>
+        </div>
+    </nav>
 
-        // Close menu when clicking on a link
-        mobileMenuLinks.forEach(link => {
-            link.addEventListener('click', () => {
-                mobileMenu.classList.add('hidden');
-                menuIcon.classList.remove('hidden');
-                closeIcon.classList.add('hidden');
-                
-                // Restore logo and social buttons
-                headerLogo.style.opacity = '1';
-                headerLogo.style.pointerEvents = 'auto';
-                socialButtons.forEach(btn => {
-                    btn.style.opacity = '1';
-                    btn.style.pointerEvents = 'auto';
-                });
-            });
-        });
-    </script>
+    <!-- Main Content Wrapper (只在手機版移動) -->
+    <div id="main-content" class="lg:transform-none transition-transform duration-300">
 
     <!-- Hero Section -->
     <section class="relative min-h-screen flex items-center justify-center bg-gradient-to-br from-slate-800 to-slate-900 pt-20"
@@ -580,6 +534,67 @@
             <p class="text-sm">Designed for Wholesale Bakery Business.</p>
         </div>
     </footer>
+    </div><!-- Close main-content -->
+
+    <!-- Side Menu Script -->
+    <script>
+        const mobileMenuButton = document.getElementById('mobile-menu-button');
+        const sideMenu = document.getElementById('side-menu');
+        const menuOverlay = document.getElementById('menu-overlay');
+        const mainContent = document.getElementById('main-content');
+        const mainHeader = document.getElementById('main-header');
+        const menuIcon = document.getElementById('menu-icon');
+        const closeIcon = document.getElementById('close-icon');
+        const menuLinks = document.querySelectorAll('.menu-link');
+
+        function openMenu() {
+            sideMenu.classList.remove('translate-x-full');
+            menuOverlay.classList.remove('hidden');
+            
+            // 只在手機版移動網頁(往左移)
+            if (window.innerWidth < 1024) { // lg breakpoint
+                mainContent.style.transform = 'translateX(-288px)'; // 往左移 288px
+                mainHeader.style.transform = 'translateX(-288px)';
+            }
+            
+            menuIcon.classList.add('hidden');
+            closeIcon.classList.remove('hidden');
+            document.body.style.overflow = 'hidden';
+        }
+
+        function closeMenu() {
+            sideMenu.classList.add('translate-x-full');
+            menuOverlay.classList.add('hidden');
+            mainContent.style.transform = 'translateX(0)';
+            mainHeader.style.transform = 'translateX(0)';
+            menuIcon.classList.remove('hidden');
+            closeIcon.classList.add('hidden');
+            document.body.style.overflow = '';
+        }
+
+        mobileMenuButton.addEventListener('click', () => {
+            if (sideMenu.classList.contains('translate-x-full')) {
+                openMenu();
+            } else {
+                closeMenu();
+            }
+        });
+
+        menuOverlay.addEventListener('click', closeMenu);
+
+        menuLinks.forEach(link => {
+            link.addEventListener('click', () => {
+                closeMenu();
+            });
+        });
+
+        // 監聽視窗大小變化,確保桌面版不受影響
+        window.addEventListener('resize', () => {
+            if (window.innerWidth >= 1024) {
+                closeMenu();
+            }
+        });
+    </script>
 </body>
 
 </html>
