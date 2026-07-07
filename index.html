@@ -9,6 +9,26 @@
       gtag('js', new Date());
       gtag('config', 'AW-17986128398');
     </script>
+
+    <!-- Google Ads 轉換追蹤：批發詢問表單提交 / LINE / Messenger / 電話點擊 -->
+    <script>
+      function gtag_report_form_conversion() {
+        gtag('event', 'conversion', {
+            'send_to': 'AW-17986128398/tFWhCM-olswcEI6UuoBD'
+        });
+      }
+      function gtag_report_line_click() {
+        gtag('event', 'conversion', {
+            'send_to': 'AW-17986128398/tFWhCM-olswcEI6UuoBD'
+        });
+      }
+      function gtag_report_phone_click() {
+        gtag('event', 'conversion', {
+            'send_to': 'AW-17986128398/tFWhCM-olswcEI6UuoBD'
+        });
+      }
+    </script>
+
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>創食新 烘焙坊 - 雙北麵包批發 | 餐廳、早午餐、飯店專業供應商</title>
@@ -84,6 +104,7 @@
             <div class="flex items-center gap-2 ml-2">
                 <!-- LINE Button -->
                 <a href="https://line.me/ti/p/YhYzMwzodr" target="_blank" rel="noopener noreferrer" 
+                   onclick="gtag_report_line_click();"
                    class="w-9 h-9 md:w-10 md:h-10 flex items-center justify-center bg-[#06C755] text-white rounded-full hover:bg-[#05b34b] transition-all duration-300 shadow-sm flex-shrink-0"
                    title="加入 LINE 好友">
                     <svg class="w-4 h-4 md:w-5 md:h-5" fill="currentColor" viewBox="0 0 24 24">
@@ -93,6 +114,7 @@
 
                 <!-- Facebook Messenger Button -->
                 <a href="https://m.me/a82823237" target="_blank" rel="noopener noreferrer"
+                   onclick="gtag_report_line_click();"
                    class="w-9 h-9 md:w-10 md:h-10 flex items-center justify-center bg-[#0084FF] text-white rounded-full hover:bg-[#0073E6] transition-all duration-300 shadow-sm flex-shrink-0"
                    title="Facebook 訊息">
                     <svg class="w-4 h-4 md:w-5 md:h-5" fill="currentColor" viewBox="0 0 24 24">
@@ -438,7 +460,9 @@
                                 </svg>
                                 <div>
                                     <p class="text-gray-400 text-sm">聯絡電話</p>
-                                    <p class="text-lg font-medium">02-8282-3237</p>
+                                    <p class="text-lg font-medium">
+                                        <a href="tel:0282823237" onclick="gtag_report_phone_click();" class="hover:text-brand transition-colors">02-8282-3237</a>
+                                    </p>
                                 </div>
                             </div>
                             <div class="flex items-start gap-4">
@@ -473,7 +497,7 @@
                                 </svg>
                                 <div>
                                     <p class="text-gray-400 text-sm">LINE 官方帳號</p>
-                                    <a href="https://line.me/ti/p/YhYzMwzodr" target="_blank" rel="noopener noreferrer" class="text-lg font-medium hover:text-brand transition-colors">
+                                    <a href="https://line.me/ti/p/YhYzMwzodr" target="_blank" rel="noopener noreferrer" onclick="gtag_report_line_click();" class="text-lg font-medium hover:text-brand transition-colors">
                                         加入 LINE 好友
                                     </a>
                                 </div>
@@ -497,6 +521,7 @@
                             <span>追蹤我們的 Facebook</span>
                         </a>
                         <a href="https://m.me/a82823237" target="_blank" rel="noopener noreferrer"
+                            onclick="gtag_report_line_click();"
                             class="flex items-center gap-2 text-brand hover:text-white transition-colors">
                             <svg class="w-6 h-6" fill="currentColor" viewBox="0 0 24 24">
                                 <path d="M12 0C5.373 0 0 4.974 0 11.111c0 3.498 1.744 6.614 4.469 8.654V24l4.088-2.242c1.092.3 2.246.464 3.443.464 6.627 0 12-4.974 12-11.111C24 4.974 18.627 0 12 0zm1.191 14.963l-3.055-3.26-5.963 3.26L10.732 8l3.131 3.259L19.752 8l-6.561 6.963z"/>
@@ -508,7 +533,7 @@
 
                 <!-- Contact Form -->
                 <div class="w-full md:w-3/5 p-10">
-                    <form action="https://formspree.io/f/mkgdbyed" method="POST" class="space-y-6">
+                    <form id="contact-form" class="space-y-6">
                         <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
                             <div>
                                 <label for="company"
@@ -546,8 +571,12 @@
                         
                         <!-- Honeypot for spam protection -->
                         <input type="text" name="_gotcha" style="display:none">
-                        
-                        <button type="submit"
+
+                        <div id="form-error-message" class="hidden text-red-600 text-sm bg-red-50 border border-red-200 rounded-lg p-3">
+                            送出時發生問題,請稍後再試,或直接透過 LINE / 電話與我們聯絡。
+                        </div>
+
+                        <button type="submit" id="form-submit-button"
                             class="w-full bg-brand text-slate-900 font-bold py-3 px-6 rounded-lg hover:bg-brand-dark hover:text-white transition-all shadow-md">
                             發送詢問
                         </button>
@@ -555,6 +584,15 @@
                             * 提交後,您的詢問將直接發送到我們的信箱,我們會盡快回覆您。
                         </p>
                     </form>
+
+                    <!-- 感謝訊息(送出成功後顯示,取代表單) -->
+                    <div id="form-success-message" class="hidden text-center py-10">
+                        <svg class="w-16 h-16 text-green-500 mx-auto mb-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"></path>
+                        </svg>
+                        <h3 class="text-2xl font-bold text-slate-800 mb-2">感謝您的詢問!</h3>
+                        <p class="text-slate-600">我們已收到您的批發需求,將盡快與您聯繫。</p>
+                    </div>
                 </div>
             </div>
         </div>
@@ -568,6 +606,49 @@
         </div>
     </footer>
     </div><!-- Close main-content -->
+
+    <!-- 表單 AJAX 送出 + Google Ads 轉換追蹤 -->
+    <script>
+        const contactForm = document.getElementById('contact-form');
+        const submitButton = document.getElementById('form-submit-button');
+        const errorMessage = document.getElementById('form-error-message');
+        const successMessage = document.getElementById('form-success-message');
+
+        contactForm.addEventListener('submit', function (e) {
+            e.preventDefault();
+            errorMessage.classList.add('hidden');
+            submitButton.disabled = true;
+            submitButton.textContent = '送出中...';
+
+            const formData = new FormData(contactForm);
+
+            fetch('https://formspree.io/f/mkgdbyed', {
+                method: 'POST',
+                body: formData,
+                headers: {
+                    'Accept': 'application/json'
+                }
+            })
+            .then(function (response) {
+                if (response.ok) {
+                    // 觸發 Google Ads 轉換事件
+                    if (typeof gtag_report_form_conversion === 'function') {
+                        gtag_report_form_conversion();
+                    }
+                    // 隱藏表單,顯示感謝訊息
+                    contactForm.classList.add('hidden');
+                    successMessage.classList.remove('hidden');
+                } else {
+                    throw new Error('Form submission failed');
+                }
+            })
+            .catch(function () {
+                errorMessage.classList.remove('hidden');
+                submitButton.disabled = false;
+                submitButton.textContent = '發送詢問';
+            });
+        });
+    </script>
 
     <!-- Side Menu Script -->
     <script>
